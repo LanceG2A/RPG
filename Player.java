@@ -29,9 +29,13 @@ public class Player {
 		{
 			this.speed = 20;
 		}
-		else if(this.weight > 50)
+		else if(this.weight > 50 && this.weight <= 80)
 		{
 			this.speed = 5;
+		}
+		else if(this.weight > 80)
+		{
+			this.speed = -10;
 		}
 		
 	}
@@ -43,7 +47,7 @@ public class Player {
 	public String getPlayerStats()
 	{
 		return "Name: " + this.name + "\nHealth: " + this.health 
-				+ "\nDamage; " + this.damage + "\nArmor: " + this.armor
+				+ "\nDamage: " + this.damage + "\nArmor: " + this.armor
 				+ "\nWeight: " + this.weight + "\nSpeed: " + this.speed;
 	}
 	
