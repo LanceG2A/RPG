@@ -46,7 +46,12 @@ public class Demo {
 	final int fancyHatWeight = 1;
 	
 	
-	
+	Weapon ouch;		//Weapon object	
+	Armor clang;		//Armor object
+	Armor clunk;		//second Armor object (two pieces of armor chosen)
+	Food yum;			//Food object
+				//These objects will be initialized using information
+				//gained from the user
 	
 	
 	public static void main(String[] args) {
@@ -81,18 +86,22 @@ public class Demo {
 		
 		case 1: character.bonusDamage = character.mace;
 				character.totalWeight += character.maceWeight;
+				character.ouch = new Weapon("Mace", character.maceWeight, character.mace);
 				break;
 				
 		case 2: character.bonusDamage = character.sword;
 				character.totalWeight += character.swordWeight;
+				character.ouch = new Weapon("Sword", character.swordWeight, character.sword);
 				break;
 				
 		case 3: character.bonusDamage = character.longBow;
 				character.totalWeight += character.longBowWeight;
+				character.ouch = new Weapon("Long Bow", character.longBowWeight, character.longBow);
 				break;
 				
 		case 4: character.bonusDamage = character.boxingGloves;
 				character.totalWeight += character.boxingGlovesWeight;
+				character.ouch = new Weapon("Boxing Gloves", character.boxingGlovesWeight, character.boxingGloves);
 				break;
 		}
 		
@@ -117,10 +126,14 @@ public class Demo {
 		
 		case 1: character.bonusDefense = character.chainmail + character.helmet;
 				character.totalWeight += (character.chainmailWeight + character.helmetWeight);
+				character.clang = new Armor("Chainmail", character.chainmailWeight, character.chainmail);
+				character.clunk = new Armor("Helmet", character.helmetWeight, character.helmet);
 				break;
 				
 		case 2: character.bonusDefense = character.robes + character.fancyHat;
 				character.totalWeight += (character.robesWeight + character.fancyHatWeight);
+				character.clang = new Armor("Robes", character.robesWeight, character.robes);
+				character.clunk = new Armor("Fancy Hat", character.fancyHatWeight, character.fancyHat);
 				break;
 		}
 		
@@ -157,22 +170,31 @@ public class Demo {
 							+ "\n(Enter the number of your choice)");
 		
 		int foodChoice = keyboard.nextInt();
+		
+		
+		
 		if(foodChoice >= 1 && foodChoice <= 7)
 		{
 		
 		switch(foodChoice)
 		{
 		case 1: character.totalWeight += -10;
+				character.yum = new Food("Fresh Veggies", character.veggies, character.veggies);
 				break;
 		case 2: character.totalWeight += 10;
+				character.yum = new Food("Apple", character.apple, character.apple);
 				break;
 		case 3: character.totalWeight += 15;
+				character.yum = new Food("Banana", character.banana, character.banana);
 				break;
 		case 4: character.totalWeight += 20;
+				character.yum = new Food("Cheeseburger", character.cheeseburger, character.cheeseburger);
 				break;
 		case 5: character.totalWeight += 25;
+				character.yum = new Food("Pizza", character.pizza, character.pizza);
 				break;
 		case 6: character.totalWeight += 40;
+				character.yum = new Food("Heaven Wrap", character.heavenWrap, character.heavenWrap);
 				break;
 		case 7: character.totalWeight += 0;
 				break;
@@ -190,6 +212,8 @@ public class Demo {
 		
 		System.out.println("Based on your choices you have the following stats: "
 							+ player1.getPlayerStats());
+		
+		
 		
 						
 		keyboard.close();		
