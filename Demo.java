@@ -6,13 +6,26 @@ public class Demo {
 	String name;
 	int bonusDamage;
 	int bonusDefense;
+	int bonusHealth;
 	int nutrition;
 	int quantity;
 	int weapon;
 	int armor;
+	int speed;
+	int totalWeight;
+	
+	//food
+	int veggies = -10;		//food weight and nutrition values are equal
+	int apple = 10;
+	int banana = 15;
+	int cheeseburger = 20;
+	int pizza = 25;
+	int heavenWrap = 40;
 	
 	
-	final int mace = 30; 				//weapon fields 
+	
+	
+	final int mace = 30; 			//weapon fields 
 	final int sword = 25;
 	final int longBow = 20;
 	final int boxingGloves = 10;
@@ -67,15 +80,19 @@ public class Demo {
 		{
 		
 		case 1: character.bonusDamage = character.mace;
+				character.totalWeight += character.maceWeight;
 				break;
 				
 		case 2: character.bonusDamage = character.sword;
+				character.totalWeight += character.swordWeight;
 				break;
 				
 		case 3: character.bonusDamage = character.longBow;
+				character.totalWeight += character.longBowWeight;
 				break;
 				
 		case 4: character.bonusDamage = character.boxingGloves;
+				character.totalWeight += character.boxingGlovesWeight;
 				break;
 		}
 		
@@ -99,17 +116,83 @@ public class Demo {
 		{
 		
 		case 1: character.bonusDefense = character.chainmail + character.helmet;
+				character.totalWeight += (character.chainmailWeight + character.helmetWeight);
 				break;
 				
 		case 2: character.bonusDefense = character.robes + character.fancyHat;
+				character.totalWeight += (character.robesWeight + character.fancyHatWeight);
 				break;
 		}
 		
-		Player Player1 = new Player(character.name, character.bonusDamage, character.bonusDefense);
+		System.out.println("Now that you have a weapon and some armor, you can choose one of the three following blessings. "
+				+ "The blessing of strength which will increase your damage.  The blessing of titans which will increase" + 
+				"your defense.  And finally the blessing of wisdom which will increase your health");
+		System.out.println("Enter the number corrseponding to the blessing of your choice"
+				+ "\n1)Blessing of Strength\n2)Blessing of Titans\n3)Blessing of Wisdom");
+		int blessing = keyboard.nextInt();
+		switch(blessing)
+		{
+		case 1: character.bonusDamage = character.bonusDamage + 10;
+				break;
+				
+		case 2: character.bonusDefense = character.bonusDefense + 10;
+				break;
+				
+		case 3: character.bonusHealth = character.bonusHealth + 10;
+				break;
+		}
 		
+		int l = 0;
+		while(l < 1)
+		{
 		
+		System.out.println("Now you can choose what food to bring on your adventure.  Food restores health, " 
+							+ "but it will slow you down.  Even after it has been consumed the weight will "
+							+ "still affect you.  The more delicious, the more nutritious... At least "
+							+ "that's what I tell myself.");
+		System.out.println("So tell me, what would you like to bring?"
+							+ "\n1)Fresh Veggies(-10)" + "\n2)Apples(10)" + "\n3)Bananas(15)"
+							+ "\n4)Cheeseburgers(20)" + "\n5)Pizza(25)" + "\n6)Heaven Wrap(40)" + "\n7)Nothing(0)"
+							+ "\nThe number after each food choice is the amount of health it restores as well as it's weight"
+							+ "\n(Enter the number of your choice)");
 		
+		int foodChoice = keyboard.nextInt();
+		if(foodChoice >= 1 && foodChoice <= 7)
+		{
 		
+		switch(foodChoice)
+		{
+		case 1: character.totalWeight += -10;
+				break;
+		case 2: character.totalWeight += 10;
+				break;
+		case 3: character.totalWeight += 15;
+				break;
+		case 4: character.totalWeight += 20;
+				break;
+		case 5: character.totalWeight += 25;
+				break;
+		case 6: character.totalWeight += 40;
+				break;
+		case 7: character.totalWeight += 0;
+				break;
+		}
+		l++; // incrementing l to stop the while loop from running
+		}
+		else
+		{
+			System.out.println("Please enter a valid number");// l is not incremented so the question
+		}														//will be asked again
+		
+		}
+		
+		Player player1 = new Player(character.name, character.bonusDamage, character.bonusDefense, character.bonusHealth, character.totalWeight);
+		
+		System.out.println("Based on your choices you have the following stats: "
+							+ player1.getPlayerStats());
+		
+						
+		keyboard.close();		
 		
 	}
 
